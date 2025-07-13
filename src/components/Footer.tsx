@@ -19,7 +19,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/sunil.shaktawat.5" className="w-10 h-10 bg-gold-accent rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
                 <Facebook className="h-5 w-5 text-charcoal" />
               </a>
-              <a href="" className="w-10 h-10 bg-gold-accent rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <a href="https://www.instagram.com/shaktawat.sunil/" className="w-10 h-10 bg-gold-accent rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
                 <Instagram className="h-5 w-5 text-charcoal" />
               </a>
               {/* <a href="#" className="w-10 h-10 bg-gold-accent rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">

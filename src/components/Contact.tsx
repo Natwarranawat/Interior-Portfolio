@@ -171,7 +171,7 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* info cards */}
+          {/* info cards
           <div className="animate-fade-in-up">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 mb-8">
               {contactInfo.map((item, idx) => {
@@ -209,7 +209,53 @@ const Contact = () => {
                 );
               })}
             </div>
+          </div> */}
+
+          {/* info cards */}
+<div className="animate-fade-in-up">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 sm:gap-6 mb-8">
+    {contactInfo.map((item, idx) => {
+      const Icon = item.icon;
+      return (
+        <Card
+          key={item.title + idx}
+          className="p-5 sm:p-6 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105 group"
+          style={{ animationDelay: `${idx * 0.1}s` }}
+        >
+          {/* flex column on mobile, row from sm: */}
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            {/* icon */}
+            <div className="w-12 h-12 bg-gold-accent rounded-full flex-shrink-0 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Icon className="h-6 w-6 text-charcoal" />
+            </div>
+
+            {/* text */}
+            <div className="flex-1 min-w-0">
+              <h4 className="font-semibold text-charcoal break-words">
+                {item.title}
+              </h4>
+              <p className="text-medium-gray text-sm break-words">
+                {item.detail}
+              </p>
+            </div>
+
+            {/* action */}
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="text-gold-accent hover:bg-gold-accent/10 sm:self-auto self-start mt-4 sm:mt-0"
+            >
+              <a href={item.href} target="_blank" rel="noopener">
+                {item.label}
+              </a>
+            </Button>
           </div>
+        </Card>
+      );
+    })}
+  </div>
+</div>
         </div>
       </div>
     </section>

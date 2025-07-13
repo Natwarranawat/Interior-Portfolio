@@ -86,6 +86,9 @@ import BalajiSite4 from "@/assets/Balajisite-4.jpeg";
 import BalajiSite5 from "@/assets/Balajisite-5.jpeg";
 import BalajiSite6 from "@/assets/Balajisite-6.jpeg";
 
+import BalajiVideo1 from "@/assets/video-1.mp4"; 
+import BalajiVideo2 from "@/assets/video-2.mp4"; 
+
 const Portfolio = () => {
   /* modal selection state */
   const [selectedProject, setSelectedProject] = useState<
@@ -293,27 +296,91 @@ export default Portfolio;
 /* ──────────────────────────────────────────────
    Featured mini‑carousel component
 ────────────────────────────────────────────── */
+// const FeaturedSlider = () => {
+//   const images = [BalajiSite1, BalajiSite2, BalajiSite3, BalajiSite4, BalajiSite5, BalajiSite6];
+//   const [index, setIndex] = useState(0);
+
+//   const prevSlide = () =>
+//     setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+//   const nextSlide = () =>
+//     setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+
+//   return (
+//     <div className="relative">
+//       <img
+//         src={images[index]}
+//         alt={`Balaji Architect Complex ${index + 1}`}
+//         className="w-full h-80 object-cover rounded-xl shadow-elegant transition-opacity duration-300"
+//       />
+
+//       {/* badge */}
+//       {/* <div className="absolute -bottom-4 -right-4 bg-gold-accent text-charcoal px-4 py-2 rounded-lg font-semibold shadow-hover">
+//         Commercial Project
+//       </div> */}
+
+//       {/* arrows */}
+//       <button
+//         onClick={prevSlide}
+//         aria-label="Previous"
+//         className="absolute top-1/2 -left-5 -translate-y-1/2 bg-warm-white/80 hover:bg-warm-white rounded-full p-2 shadow-card"
+//       >
+//         <ChevronLeft className="h-5 w-5" />
+//       </button>
+//       <button
+//         onClick={nextSlide}
+//         aria-label="Next"
+//         className="absolute top-1/2 -right-5 -translate-y-1/2 bg-warm-white/80 hover:bg-warm-white rounded-full p-2 shadow-card"
+//       >
+//         <ChevronRight className="h-5 w-5" />
+//       </button>
+//     </div>
+//   );
+// };
+
+/* ──────────────────────────────────────────────
+   Featured mini‑carousel — supports images *and* videos
+────────────────────────────────────────────── */
 const FeaturedSlider = () => {
-  const images = [BalajiSite1, BalajiSite2, BalajiSite3, BalajiSite4, BalajiSite5, BalajiSite6];
+  // ✅ Mix images and videos in a single array
+  const media: { type: "image" | "video"; src: string }[] = [
+    { type: "image", src: BalajiSite1 },
+    { type: "image", src: BalajiSite2 },
+    { type: "image", src: BalajiSite3 },
+    { type: "video", src: BalajiVideo1 },   // <- example video
+    { type: "image", src: BalajiSite4 },
+    { type: "video", src: BalajiVideo2 },   // <- another video
+    { type: "image", src: BalajiSite5 },
+    { type: "image", src: BalajiSite6 },
+  ];
+
   const [index, setIndex] = useState(0);
 
   const prevSlide = () =>
-    setIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+    setIndex((i) => (i === 0 ? media.length - 1 : i - 1));
   const nextSlide = () =>
-    setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+    setIndex((i) => (i === media.length - 1 ? 0 : i + 1));
+
+  const current = media[index];
 
   return (
     <div className="relative">
-      <img
-        src={images[index]}
-        alt={`Balaji Architect Complex ${index + 1}`}
-        className="w-full h-80 object-cover rounded-xl shadow-elegant transition-opacity duration-300"
-      />
-
-      {/* badge */}
-      {/* <div className="absolute -bottom-4 -right-4 bg-gold-accent text-charcoal px-4 py-2 rounded-lg font-semibold shadow-hover">
-        Commercial Project
-      </div> */}
+      {/* render image or video depending on type */}
+      {current.type === "image" ? (
+        <img
+          src={current.src}
+          alt={`Balaji Architect Complex ${index + 1}`}
+          className="w-full h-80 object-cover rounded-xl shadow-elegant transition-opacity duration-300"
+        />
+      ) : (
+        <video
+          src={current.src}
+          muted
+          controls          /* remove controls if you want autoplay‑only */
+          playsInline
+          preload="metadata"
+          className="w-full h-80 object-cover rounded-xl shadow-elegant transition-opacity duration-300"
+        />
+      )}
 
       {/* arrows */}
       <button
@@ -333,6 +400,7 @@ const FeaturedSlider = () => {
     </div>
   );
 };
+
 
 /* ──────────────────────────────────────────────
    One‑image‑at‑a‑time slider for the modal

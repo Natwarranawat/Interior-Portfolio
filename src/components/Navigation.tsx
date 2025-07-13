@@ -15,6 +15,13 @@ const Navigation = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const contactInfo = {
+    icon: Phone,
+    title: "Call Now",
+    detail: "+91 76000 29591",
+    href: "tel:+917600029591",
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-warm-white/95 backdrop-blur-md shadow-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +55,9 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Button variant="elegant" size="sm">
               <Phone className="h-4 w-4 mr-2" />
-              Call Now
+               <a href={contactInfo.href} target="_blank" rel="noopener">
+                {contactInfo.title}
+              </a>
             </Button>
           </div>
 
